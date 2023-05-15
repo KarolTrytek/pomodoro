@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pomodorro/utils.dart';
+import 'package:provider/provider.dart';
+
+import '../timerservice.dart';
 
 class TimerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final provider =  Provider.of<TimerService>(context);
     return Column(
       children: [
-        Text("Praca", style: textStyle(35, Colors.white, FontWeight.w700)),
+        Text("Skup się!", style: textStyle(35, Colors.black, FontWeight.w700)),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -15,7 +19,7 @@ class TimerCard extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 3.2,
               height: 170,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.lightBlueAccent,
                   borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
@@ -25,8 +29,8 @@ class TimerCard extends StatelessWidget {
                         offset: Offset(0, 2))
                   ]),
               child: Center(
-                child: Text("12",
-                    style: textStyle(70, Colors.redAccent, FontWeight.bold)),
+                child: Text((provider.currentDuration ~/ 60).toString(),
+                    style: textStyle(70, Colors.black, FontWeight.bold)),
               ),
             ),
             SizedBox(
@@ -34,14 +38,14 @@ class TimerCard extends StatelessWidget {
             ),
             Text(
               ":",
-              style: textStyle(60, Colors.lightBlue, FontWeight.bold),
+              style: textStyle(60, Colors.lightBlueAccent, FontWeight.bold),
             ),
             SizedBox(width: 10),
             Container(
               width: MediaQuery.of(context).size.width / 3.2,
               height: 170,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.lightBlueAccent,
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -53,7 +57,7 @@ class TimerCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text("00",
-                    style: textStyle(70, Colors.redAccent, FontWeight.bold)),
+                    style: textStyle(70, Colors.black, FontWeight.bold)),
               ),
             )
           ],
