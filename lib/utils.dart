@@ -10,7 +10,7 @@ TextStyle textStyle(double size, [Color? color, FontWeight? fw]) {
 }
 
 List selectableTimes = [
-  "300",
+  "60",
   "600",
   "900",
   "1200",
@@ -22,3 +22,12 @@ List selectableTimes = [
   "3000",
   "3300",
 ];
+
+
+Color renderColor(String currentState) {
+  if(currentState == "SKUP SIĘ!") {
+    return Colors.redAccent;
+  } else {
+    return Colors.lightBlueAccent;
+  }
+}

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pomodorro/timerservice.dart';
 import 'package:pomodorro/utils.dart';
 import 'package:pomodorro/widget/progresswidget.dart';
 import 'package:pomodorro/widget/timecontroller.dart';
 import 'package:pomodorro/widget/timeoptions.dart';
 import 'package:pomodorro/widget/timercard.dart';
+import 'package:provider/provider.dart';
 
 class PomodoroScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -19,7 +21,8 @@ class PomodoroScreen extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Provider.of<TimerService>(context, listen: false).reset(),
               icon: Icon(
                 Icons.refresh,
                 color: Colors.black,
@@ -30,18 +33,26 @@ class PomodoroScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
-            child: Column(
-              children: [
-                SizedBox(height: 15,),
-                TimerCard(),
-                SizedBox(height:40,),
-                TimeOptions(),
-                SizedBox(height: 40,),
-                TimeController(),
-                SizedBox(height: 40,),
-                ProgressWidget()
-              ],
-            ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              TimerCard(),
+              SizedBox(
+                height: 40,
+              ),
+              TimeOptions(),
+              SizedBox(
+                height: 40,
+              ),
+              TimeController(),
+              SizedBox(
+                height: 40,
+              ),
+              ProgressWidget()
+            ],
+          ),
         ),
       ),
     );

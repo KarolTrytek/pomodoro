@@ -7,10 +7,13 @@ import '../timerservice.dart';
 class TimerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final provider =  Provider.of<TimerService>(context);
+    final provider = Provider.of<TimerService>(context);
+    final seconds = provider.currentDuration % 60;
     return Column(
       children: [
-        Text("Skup się!", style: textStyle(35, Colors.black, FontWeight.w700)),
+        Text(
+            provider.currentState,
+            style: textStyle(35, Colors.black, FontWeight.w700)),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,7 +22,7 @@ class TimerCard extends StatelessWidget {
               width: MediaQuery.of(context).size.width / 3.2,
               height: 170,
               decoration: BoxDecoration(
-                  color: Colors.lightBlueAccent,
+                  color: renderColor(provider.currentState),
                   borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
@@ -38,14 +41,17 @@ class TimerCard extends StatelessWidget {
             ),
             Text(
               ":",
-              style: textStyle(60, Colors.lightBlueAccent, FontWeight.bold),
+              style: textStyle(
+                  60, 
+                  renderColor(provider.currentState),
+                  FontWeight.bold),
             ),
             SizedBox(width: 10),
             Container(
               width: MediaQuery.of(context).size.width / 3.2,
               height: 170,
               decoration: BoxDecoration(
-                color: Colors.lightBlueAccent,
+                color: renderColor(provider.currentState),
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -56,7 +62,10 @@ class TimerCard extends StatelessWidget {
                 ],
               ),
               child: Center(
-                child: Text("00",
+                child: Text(
+                  seconds == 0
+                      ? "${seconds.round()}0"
+                      : seconds.round().toString(),
                     style: textStyle(70, Colors.black, FontWeight.bold)),
               ),
             )

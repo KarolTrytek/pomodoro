@@ -15,33 +15,27 @@ class TimeOptions extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
           children: selectableTimes.map((time) {
-            return InkWell(
-                onTap:()
-            =>
-                provider.selectTime(double.parse(time))
-            ,
+        return InkWell(
+            onTap: () => provider.selectTime(double.parse(time)),
             child: Container(
-            margin: EdgeInsets.only(left: 10),
-            width: 70,
-            height: 50,
-            decoration: int.parse(time) == provider.selectedTime
-            ? BoxDecoration(
-            color: Colors.lightBlueAccent,
-            borderRadius: BorderRadius.circular(5))
-                : BoxDecoration(
-            border: Border.all(width: 3, color: Colors.black),
-            borderRadius: BorderRadius.circular(5)),
-            child: Center(
-            child: Text(
-            (int.parse(time) ~/ 60).toString(),
-            style: textStyle(25, Colors.black, FontWeight.w700),
-            )
-            ,
-            )
-            ,
-            )
-            );
-          }).toList()),
+              margin: EdgeInsets.only(left: 10),
+              width: 70,
+              height: 50,
+              decoration: int.parse(time) == provider.selectedTime
+                  ? BoxDecoration(
+                      color: renderColor(provider.currentState),
+                      borderRadius: BorderRadius.circular(5))
+                  : BoxDecoration(
+                      border: Border.all(width: 3, color: Colors.black),
+                      borderRadius: BorderRadius.circular(5)),
+              child: Center(
+                child: Text(
+                  (int.parse(time) ~/ 60).toString(),
+                  style: textStyle(25, Colors.black, FontWeight.w700),
+                ),
+              ),
+            ));
+      }).toList()),
     );
   }
 }
